@@ -5,6 +5,19 @@
 
 ## 仕組み
 
+### 抽選タスク（メイン）
+
+1. GitHub Actions（`xposts.yml`）が毎朝 JST 7:20 に Xpoz で X の抽選告知投稿を検索し、`data/x/posts.json` に保存
+2. Claude Code のルーティンが [ROUTINE.md](ROUTINE.md) に従って投稿を読み、対象の抽選を GitHub Issues（ラベル `tcg-task`）にする
+   - 対象: ネット応募＋配送、または東急目黒線沿線・新宿駅周辺の店頭受け取り
+   - 日程（受付開始・締切・結果発表・購入期日）は Issue 本文の JSON に入る
+3. サイトの「タスク」タブで締切順に表示。状態（未応募→応募済み→当選／落選→購入済み）はラベルで管理し、サイトのボタンか GitHub アプリで変更
+4. `collect.yml` が1日2回、新しいタスク・締切24時間前・結果発表日・購入期日24時間前を Discord に通知し、未応募のまま締切を過ぎたタスクを閉じる
+
+Xpoz の無料枠は一回限りの500クレジット（検索1回2クレジット）。1日1回の検索で約8か月もつ。
+
+### 公式サイト巡回
+
 - GitHub Actions が JST 7:50 / 19:50 に `npm run collect` を実行
 - `src/sources.js` の巡回先を取得し、新しい告知だけを `docs/data/items.json` に追記してコミット
 - 新BOXには X 検索リンク（全体 / 主要店舗アカウントのみ）を付ける
@@ -24,7 +37,7 @@
 
 ## セットアップ
 
-1. Settings → Secrets and variables → Actions に `DISCORD_WEBHOOK_URL` を登録
+1. Settings → Secrets and variables → Actions に `DISCORD_WEBHOOK_URL` と `XPOZ_API_KEY` を登録
 2. Settings → Pages で Source を `Deploy from a branch`、`main` / `/docs` に設定
 3. Actions → collect → Run workflow で初回実行（初回は既存の告知を記録するだけで通知しません）
 

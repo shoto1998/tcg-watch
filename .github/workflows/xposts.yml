@@ -1,0 +1,38 @@
+name: xposts
+
+# X の抽選告知投稿を Xpoz で1日1回取得して data/x/posts.json に保存する。
+# ここで保存した投稿を、Claude Code のルーティンが読んで GitHub Issues のタスクにする。
+on:
+  schedule:
+    - cron: '20 22 * * *' # JST 7:20
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-push
+  cancel-in-progress: false
+
+jobs:
+  xposts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node src/xposts.js
+        env:
+          XPOZ_API_KEY: ${{ secrets.XPOZ_API_KEY }}
+      - name: Commit posts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/x
+          git diff --cached --quiet || git commit -m 'data: x posts'
+          git pull --rebase -q origin main
+          git push

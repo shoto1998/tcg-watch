@@ -12,17 +12,18 @@
   <p id="updated" class="muted"></p>
 </header>
 <nav class="tabs" role="tablist">
-  <button data-tab="open" class="on">受付中</button>
+  <button data-tab="tasks" class="on">タスク</button>
   <button data-tab="product">新BOX</button>
-  <button data-tab="applied">応募済み</button>
+  <button data-tab="lottery">店舗告知</button>
   <button data-tab="sources">巡回先</button>
+  <button data-tab="settings">設定</button>
 </nav>
 <nav class="games">
   <label><input type="checkbox" value="pokemon" checked> ポケカ</label>
   <label><input type="checkbox" value="onepiece" checked> ワンピ</label>
   <label><input type="checkbox" value="yugioh" checked> 遊戯王</label>
 </nav>
-<main id="list"></main>
-<script src="app.js"></script>
+<main id="list"><p class="empty">読み込み中…</p></main>
+<script type="module" src="app.js"></script>
 </body>
 </html>

@@ -14,9 +14,10 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
-  group: collect
+  group: data-push
   cancel-in-progress: false
 
 jobs:
@@ -41,6 +42,11 @@ jobs:
         run: npm run collect
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - if: ${{ !inputs.test_notify }}
+        run: node src/task-notify.js
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Commit data
         if: ${{ !inputs.test_notify }}
         run: |
@@ -48,4 +54,5 @@ jobs:
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add docs/data
           git diff --cached --quiet || git commit -m 'data: update'
+          git pull --rebase -q origin main
           git push
