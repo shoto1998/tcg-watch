@@ -1,0 +1,32 @@
+name: habit
+
+# 毎朝 JST 7:52 に「トレゲトで抽選に応募」の習慣タスクを作って Discord に通知する。
+# 前日までに完了しなかった分は未達として閉じ、月曜は前週の完了率を振り返る。
+on:
+  schedule:
+    - cron: '52 22 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: habit
+  cancel-in-progress: false
+
+jobs:
+  habit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node src/habit.js
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          GITHUB_TOKEN: ${{ github.token }}

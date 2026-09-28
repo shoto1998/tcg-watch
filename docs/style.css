@@ -56,3 +56,9 @@ td, th { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line
 .settings input { flex: 1 1 220px; }
 .settings h2 { font-size: 16px; margin: 16px 0 4px; }
 .edit[hidden] { display: none; }
+.done-msg { font-weight: 600; margin: 8px 0 0; }
+.weeks .days { white-space: nowrap; }
+.day { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 3px; border: 1px solid var(--line); vertical-align: middle; }
+.day.done { background: #16a34a; border-color: #16a34a; }
+.day.missed { background: var(--line); }
+.day.pending { border-color: var(--accent); }

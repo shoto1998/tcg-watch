@@ -1,4 +1,5 @@
 import { STATUSES, STEPS, TASK_LABEL, formatBody, formatJst as fmt, parseTask } from './task-core.js';
+import { HABIT, HABIT_LABEL, addDays, dayLabel, jstDate, parseHabit, streak, weekStart, weekStats } from './habit-core.js';
 
 const REPO = 'shoto1998/tcg-watch';
 const API = `https://api.github.com/repos/${REPO}`;
@@ -11,7 +12,7 @@ const store = (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.re
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const link = (url, text, cls = '') => (url ? `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener">${text}</a>` : '');
 
-let tab = 'tasks';
+let tab = 'habit';
 let filter = 'action';
 let tasks = [];
 let closed = null;
@@ -62,6 +63,40 @@ const NEXT = {
   applied: [['won', '当選'], ['lost', '落選']],
   won: [['bought', '購入した']],
 };
+
+const pct = (r) => (r === null ? '-' : `${Math.round(r * 100)}%`);
+
+async function renderHabit() {
+  const issues = (await gh(`/issues?labels=${HABIT_LABEL}&state=all&per_page=100`)).filter((i) => !i.pull_request);
+  const habits = issues.map(parseHabit);
+  const today = jstDate(Date.now());
+  const t = habits.find((h) => h.date === today);
+  const thisWeek = weekStart(today);
+  const weeks = [0, 1, 2, 3].map((k) => weekStats(habits, addDays(thisWeek, -7 * k)));
+  const cell = (d) => {
+    const r = habits.find((h) => h.date === d)?.result;
+    return `<span class="day ${r ?? 'none'}" title="${dayLabel(d)}"></span>`;
+  };
+  const todayCard = !t
+    ? '<p class="muted">今日のタスクは毎朝8時ごろに作られます</p>'
+    : t.result === 'done'
+      ? '<p class="done-msg">✅ 今日は完了しました</p>'
+      : `<div class="actions">
+          ${link(HABIT.url, 'トレゲトを開く', 'primary')}
+          ${token ? `<button data-habit-done="${t.number}">完了した</button>` : link(t.url, 'GitHubで閉じる')}
+        </div>
+        ${token ? '' : '<p class="hint">「設定」でGitHubトークンを登録すると、ここで完了を記録できます</p>'}`;
+  $list.innerHTML = `<article class="item habit">
+      <div class="head"><span class="badge status-todo">${dayLabel(today)}</span><span class="due">連続 ${streak(habits, today)}日</span></div>
+      <p class="title">${esc(HABIT.title)}</p>
+      ${todayCard}
+    </article>
+    <table class="weeks"><tr><th>週</th><th>月火水木金土日</th><th>完了率</th></tr>
+      ${weeks.map((w) => `<tr><td>${dayLabel(w.start)}〜</td>
+        <td class="days">${[...Array(7)].map((_, k) => cell(addDays(w.start, k))).join('')}</td>
+        <td>${pct(w.rate)} <span class="muted">${w.done}/${w.settled}</span></td></tr>`).join('')}
+    </table>`;
+}
 
 function taskCard(t) {
   const [dueKey, due] = nextDue(t);
@@ -160,7 +195,8 @@ function renderSettings() {
 
 async function view() {
   try {
-    if (tab === 'tasks') await renderTasks();
+    if (tab === 'habit') await renderHabit();
+    else if (tab === 'tasks') await renderTasks();
     else if (tab === 'product' || tab === 'lottery') renderItems(tab);
     else if (tab === 'sources') renderSources();
     else renderSettings();
@@ -199,6 +235,14 @@ $list.addEventListener('click', async (e) => {
   if (b.dataset.filter) { filter = b.dataset.filter; return view(); }
   if (b.dataset.edit) { const f = $list.querySelector(`[data-form="${b.dataset.edit}"]`); f.hidden = !f.hidden; return; }
   if (b.id === 'token-clear') { token = ''; store(TOKEN_KEY, ''); return view(); }
+  if (b.dataset.habitDone) {
+    b.disabled = true;
+    try {
+      await gh(`/issues/${b.dataset.habitDone}`, { method: 'PATCH', body: JSON.stringify({ state: 'closed', state_reason: 'completed' }) });
+      await view();
+    } catch (err) { alert(`記録できませんでした: ${err.message}`); b.disabled = false; }
+    return;
+  }
   if (b.dataset.status) {
     b.disabled = true;
     try { await setStatus(Number(b.dataset.n), b.dataset.status); await refresh(); }
