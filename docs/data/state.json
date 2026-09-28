@@ -1,1 +1,108 @@
-{"sources":{}}
+{
+ "sources": {
+  "pokemon-official": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 2
+  },
+  "onepiece-official": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 9
+  },
+  "yugioh-official": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 6
+  },
+  "geo": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 3
+  },
+  "hmv": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 0
+  },
+  "yamada": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 0
+  },
+  "rakuten-books": {
+   "failures": 0,
+   "alerted": false,
+   "seeded": true,
+   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastCount": 0
+  },
+  "aeon": {
+   "failures": 1,
+   "alerted": false,
+   "seeded": false,
+   "lastError": "HTTP 403: https://aeonretail.com/list/k-chusenhanbai/"
+  },
+  "amiami": {
+   "failures": 1,
+   "alerted": false,
+   "seeded": false,
+   "lastError": "HTTP 403: https://www.amiami.jp/top/page/t/attention.html"
+  },
+  "hareruya2": {
+   "failures": 1,
+   "alerted": false,
+   "seeded": false,
+   "lastError": "robots.txt で禁止: https://www.hareruya2.com/blogs/news"
+  },
+  "seven-net": {
+   "failures": 1,
+   "alerted": false,
+   "seeded": false,
+   "lastError": "HTTP 404: https://7net.omni7.jp/general/010007/230324pokemoncard"
+  }
+ },
+ "updatedAt": "2026-09-28T01:44:52.768Z",
+ "manualLinks": [
+  {
+   "name": "ポケモンセンターオンライン お知らせ",
+   "url": "https://www.pokemoncenter-online.com/news/"
+  },
+  {
+   "name": "ポケモンセンターオンライン 抽選",
+   "url": "https://www.pokemoncenter-online.com/lottery/landing-page.html"
+  },
+  {
+   "name": "ヨドバシ 人気商品抽選",
+   "url": "https://limited.yodobashi.com/"
+  },
+  {
+   "name": "ビックカメラ 抽選販売の案内（店頭受付）",
+   "url": "https://www.biccamera.com/bc/c/info/order/lottery.jsp"
+  },
+  {
+   "name": "ノジマ ポケカ",
+   "url": "https://online.nojima.co.jp/contents/pokemon/"
+  },
+  {
+   "name": "Joshin 予約一覧",
+   "url": "https://joshinweb.jp/toy/48712.html"
+  },
+  {
+   "name": "トイザらス 予約商品",
+   "url": "https://www.toysrus.co.jp/ja-jp/whats-on/new-arrivals/preorder-2/"
+  }
+ ]
+}
