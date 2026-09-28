@@ -79,6 +79,8 @@ async function main() {
   await writeFile(ITEMS, JSON.stringify(kept, null, 1) + '\n');
   state.updatedAt = now.toISOString();
   state.manualLinks = MANUAL_LINKS;
+  // 巡回先から外したものは状態表示からも消す
+  for (const id of Object.keys(state.sources)) if (!SOURCES.some((s) => s.id === id)) delete state.sources[id];
   await writeFile(STATE, JSON.stringify(state, null, 1) + '\n');
 
   const embeds = [

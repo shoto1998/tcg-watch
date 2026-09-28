@@ -42,7 +42,9 @@ export function filterItems(links, source) {
     .filter((l) => {
       if (source.include && !source.include.test(l.title)) return false;
       if (source.exclude && source.exclude.test(l.title)) return false;
+      if (source.urlInclude && !source.urlInclude.test(l.url)) return false;
       if (!l.game) return false;
+      if (source.match) return source.match.test(l.title);
       return source.kind === 'product' ? PRODUCT.test(l.title) : LOTTERY.test(l.title);
     });
 }

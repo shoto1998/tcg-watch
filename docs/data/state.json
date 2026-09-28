@@ -1,12 +1,5 @@
 {
  "sources": {
-  "pokemon-official": {
-   "failures": 0,
-   "alerted": false,
-   "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
-   "lastCount": 2
-  },
   "onepiece-official": {
    "failures": 0,
    "alerted": false,

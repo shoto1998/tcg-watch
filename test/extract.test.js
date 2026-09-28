@@ -64,3 +64,20 @@ test('decodeHtml は meta charset の Shift_JIS / EUC-JP を読める', async ()
   assert.equal(decodeHtml(euc, 'text/html; charset=EUC-JP'), 'ポケカ');
   assert.equal(decodeHtml(Buffer.from('ポケカ'), null), 'ポケカ');
 });
+
+test('source.match / urlInclude で絞り込める', () => {
+  const pokemon = { kind: 'product', game: 'pokemon', match: /^商品 |抽選/, exclude: /^イベント |プレイマット/ };
+  const links = [
+    { title: '商品 拡張パック「30th CELEBRATION」の収録カード公開！ 2026.9.9', url: 'a' },
+    { title: 'その他 【第二回】ポケモンセンターオンラインでの30周年商品の抽選受け付けについて', url: 'b' },
+    { title: 'イベント 「シティリーグ」事前抽選のお知らせ', url: 'c' },
+    { title: '商品 9月16日（水）に発売のプレイマットを一挙紹介！', url: 'd' },
+  ];
+  assert.deepEqual(filterItems(links, pokemon).map((l) => l.url), ['a', 'b']);
+  const onepiece = { kind: 'product', game: 'onepiece', urlInclude: /\/products\/[\w-]+\.html$/ };
+  const op = [
+    { title: 'ブースターパック 神の支配【OP-18】', url: 'https://x/products/op18.html' },
+    { title: 'ブースターパック 強力な1枚を', url: 'https://x/products/?subcategory=boosters' },
+  ];
+  assert.deepEqual(filterItems(op, onepiece).map((l) => l.url), ['https://x/products/op18.html']);
+});
