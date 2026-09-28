@@ -12,7 +12,10 @@ const store = (k, v) => { try { v ? localStorage.setItem(k, v) : localStorage.re
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const link = (url, text, cls = '') => (url ? `<a class="${cls}" href="${esc(url)}" target="_blank" rel="noopener">${text}</a>` : '');
 
-let tab = 'habit';
+// #settings のように URL の # でタブを直接開ける
+const TABS = ['habit', 'tasks', 'product', 'lottery', 'sources', 'settings'];
+let tab = TABS.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'habit';
+document.querySelectorAll('.tabs button').forEach((x) => x.classList.toggle('on', x.dataset.tab === tab));
 let filter = 'action';
 let tasks = [];
 let closed = null;
@@ -275,6 +278,7 @@ document.querySelector('.tabs').addEventListener('click', (e) => {
   const b = e.target.closest('button[data-tab]');
   if (!b) return;
   tab = b.dataset.tab;
+  history.replaceState(null, '', `#${tab}`);
   document.querySelectorAll('.tabs button').forEach((x) => x.classList.toggle('on', x === b));
   view();
 });
@@ -291,7 +295,7 @@ async function completeFromLink() {
   banner.className = 'banner';
   document.querySelector('header').append(banner);
   if (!token) {
-    banner.textContent = '完了を記録するには「設定」でGitHubトークンを登録してください（このブラウザで1回だけ）';
+    banner.innerHTML = `完了を記録するには、このブラウザで1回だけ <a href="#settings" onclick="location.reload()">設定</a> からGitHubトークンを登録し、LINEのボタンをもう一度押してください`;
     return;
   }
   try {
