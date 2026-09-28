@@ -280,10 +280,39 @@ document.querySelector('.tabs').addEventListener('click', (e) => {
 });
 document.querySelector('.games').addEventListener('change', view);
 
+// 通知のリンク（?done=Issue番号）から開いたら、その日の習慣タスクを完了にする
+async function completeFromLink() {
+  const params = new URLSearchParams(location.search);
+  const n = Number(params.get('done'));
+  if (!n) return;
+  history.replaceState(null, '', location.pathname);
+  tab = 'habit';
+  const banner = document.createElement('p');
+  banner.className = 'banner';
+  document.querySelector('header').append(banner);
+  if (!token) {
+    banner.textContent = '完了を記録するには「設定」でGitHubトークンを登録してください（このブラウザで1回だけ）';
+    return;
+  }
+  try {
+    const issue = await gh(`/issues/${n}`);
+    if (!issue.labels.some((l) => l.name === HABIT_LABEL)) throw new Error('習慣タスクではありません');
+    if (issue.state === 'open') {
+      await gh(`/issues/${n}`, { method: 'PATCH', body: JSON.stringify({ state: 'closed', state_reason: 'completed' }) });
+      banner.textContent = '✅ 完了を記録しました';
+    } else {
+      banner.textContent = issue.state_reason === 'completed' ? '✅ すでに完了しています' : 'この日は締め切られています（未達）';
+    }
+  } catch (e) {
+    banner.textContent = `記録できませんでした: ${e.message}`;
+  }
+}
+
 Promise.all([
+  completeFromLink(),
   fetch('data/items.json', { cache: 'no-store' }).then((r) => r.json()).catch(() => []),
   fetch('data/state.json', { cache: 'no-store' }).then((r) => r.json()).catch(() => ({ sources: {} })),
-]).then(async ([i, s]) => {
+]).then(async ([, i, s]) => {
   items = i;
   state = s;
   document.getElementById('updated').textContent = s.updatedAt ? `最終巡回 ${fmt(s.updatedAt)}` : 'まだ巡回していません';

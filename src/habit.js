@@ -55,7 +55,7 @@ async function main() {
     url: HABIT.url,
     description: [
       `[トレゲトを開く](${HABIT.url}) → 今日締切・新着の抽選に応募`,
-      `終わったら [完了を記録](${SITE}) （または [Issue](${todayIssue.html_url}) を閉じる）`,
+      `終わったら [完了を記録](${SITE}?done=${todayIssue.number}) （または [Issue](${todayIssue.html_url}) を閉じる）`,
       '',
       `連続達成: **${streak(habits, today)}日** ・ 今週: ${week.done}/${week.settled}（${pct(week.rate)}）`,
     ].join('\n'),
@@ -82,7 +82,18 @@ async function main() {
     });
   }
 
-  await notify(embeds);
+  // LINE のボタンは普段のブラウザで開く（openExternalBrowser=1）。サイトが ?done= を見て完了を記録する
+  const doneUrl = `${SITE}?done=${todayIssue.number}&openExternalBrowser=1`;
+  await notify(embeds, undefined, {
+    lineButtons: {
+      title: `📝 ${dayLabel(today)} ${HABIT.title}`,
+      text: '応募が終わったら「完了した」を押す',
+      actions: [
+        { label: 'トレゲトを開く', uri: `${HABIT.url}?openExternalBrowser=1` },
+        { label: '完了した', uri: doneUrl },
+      ],
+    },
+  });
   console.log(`today=${today} week=${week.done}/${week.settled}`);
 }
 

@@ -19,7 +19,8 @@ export function toEmbed(item, heading) {
 }
 
 // Discord と LINE のうち、Secret が登録されている方に送る（両方あれば両方）。
-export async function notify(embeds, content) {
+// options.lineButtons = { title, text, actions: [{ label, uri }] } を渡すと、LINE にはボタン付きで送る
+export async function notify(embeds, content, options = {}) {
   if (!embeds.length && !content) return;
   const discord = process.env.DISCORD_WEBHOOK_URL;
   const line = process.env.LINE_CHANNEL_ACCESS_TOKEN;
@@ -29,7 +30,7 @@ export async function notify(embeds, content) {
     return;
   }
   if (discord) await sendDiscord(discord, embeds, content);
-  if (line) await sendLine(line, embeds, content);
+  if (line) await sendLine(line, embeds, content, options.lineButtons);
 }
 
 async function sendDiscord(webhook, embeds, content) {
@@ -55,7 +56,20 @@ export function toLineText(embeds, content) {
   return blocks.join('\n\n');
 }
 
-async function sendLine(token, embeds, content) {
+export function lineButtonsMessage({ title, text, actions }) {
+  return {
+    type: 'template',
+    altText: title,
+    template: {
+      type: 'buttons',
+      title: title.slice(0, 40),
+      text: text.slice(0, 60),
+      actions: actions.slice(0, 4).map((a) => ({ type: 'uri', label: a.label.slice(0, 20), uri: a.uri })),
+    },
+  };
+}
+
+async function sendLine(token, embeds, content, buttons) {
   // 無料枠（月200通）を節約するため、1回の実行で出る通知は1通にまとめる。上限5000文字
   let text = toLineText(embeds, content);
   if (text.length > 4900) text = `${text.slice(0, 4900)}\n…（続きはサイトで）`;
@@ -63,7 +77,7 @@ async function sendLine(token, embeds, content) {
   const res = await fetch('https://api.line.me/v2/bot/message/broadcast', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ messages: [{ type: 'text', text }] }),
+    body: JSON.stringify({ messages: [{ type: 'text', text }, ...(buttons ? [lineButtonsMessage(buttons)] : [])] }),
   });
   if (!res.ok) throw new Error(`LINE ${res.status}: ${await res.text()}`);
 }

@@ -62,3 +62,4 @@ td, th { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line
 .day.done { background: #16a34a; border-color: #16a34a; }
 .day.missed { background: var(--line); }
 .day.pending { border-color: var(--accent); }
+.banner { margin: 8px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--card); border: 1px solid var(--line); font-weight: 600; }
