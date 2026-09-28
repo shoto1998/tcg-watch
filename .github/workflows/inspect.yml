@@ -7,6 +7,10 @@ on:
       urls:
         description: 'スペース区切りのURL'
         required: true
+      text:
+        description: 'リンク一覧ではなく本文を出す'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -26,3 +30,4 @@ jobs:
       - run: node src/inspect.js $URLS
         env:
           URLS: ${{ inputs.urls }}
+          INSPECT_TEXT: ${{ inputs.text && '1' || '' }}
