@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TCG Watch</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>TCG Watch</h1>
+  <p id="updated" class="muted"></p>
+</header>
+<nav class="tabs" role="tablist">
+  <button data-tab="open" class="on">受付中</button>
+  <button data-tab="product">新BOX</button>
+  <button data-tab="applied">応募済み</button>
+  <button data-tab="sources">巡回先</button>
+</nav>
+<nav class="games">
+  <label><input type="checkbox" value="pokemon" checked> ポケカ</label>
+  <label><input type="checkbox" value="onepiece" checked> ワンピ</label>
+  <label><input type="checkbox" value="yugioh" checked> 遊戯王</label>
+</nav>
+<main id="list"></main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "tcg-watch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "collect": "node src/collect.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
