@@ -41,7 +41,7 @@ Xpoz の無料枠は一回限りの500クレジット（検索1回2クレジッ�
 
 ## セットアップ
 
-1. Settings → Secrets and variables → Actions に `DISCORD_WEBHOOK_URL` と `XPOZ_API_KEY` を登録
+1. Settings → Secrets and variables → Actions に通知先（`DISCORD_WEBHOOK_URL` と `LINE_CHANNEL_ACCESS_TOKEN` のどちらか、または両方）と `XPOZ_API_KEY` を登録
 2. Settings → Pages で Source を `Deploy from a branch`、`main` / `/docs` に設定
 3. Actions → collect → Run workflow で初回実行（初回は既存の告知を記録するだけで通知しません）
 

@@ -81,3 +81,9 @@ test('source.match / urlInclude で絞り込める', () => {
   ];
   assert.deepEqual(filterItems(op, onepiece).map((l) => l.url), ['https://x/products/op18.html']);
 });
+
+test('toLineText は Markdown をプレーンテキストにする', async () => {
+  const { toLineText } = await import('../src/discord.js');
+  const text = toLineText([{ title: '📝 今日の応募', url: 'https://a', description: '[トレゲトを開く](https://a)\n連続 **3日**' }], '⚠️ 警告');
+  assert.equal(text, '⚠️ 警告\n\n📝 今日の応募\nトレゲトを開く https://a\n連続 3日');
+});

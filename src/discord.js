@@ -18,15 +18,21 @@ export function toEmbed(item, heading) {
   };
 }
 
+// Discord と LINE のうち、Secret が登録されている方に送る（両方あれば両方）。
 export async function notify(embeds, content) {
-  const webhook = process.env.DISCORD_WEBHOOK_URL;
   if (!embeds.length && !content) return;
-  if (!webhook) {
-    console.log('[discord] DISCORD_WEBHOOK_URL 未設定のため送信しません');
-    for (const e of embeds) console.log(`  ${e.title} ${e.url ?? ''}`);
-    if (content) console.log(`  ${content}`);
+  const discord = process.env.DISCORD_WEBHOOK_URL;
+  const line = process.env.LINE_CHANNEL_ACCESS_TOKEN;
+  if (!discord && !line) {
+    console.log('[notify] 通知先が未設定のため送信しません');
+    console.log(toLineText(embeds, content));
     return;
   }
+  if (discord) await sendDiscord(discord, embeds, content);
+  if (line) await sendLine(line, embeds, content);
+}
+
+async function sendDiscord(webhook, embeds, content) {
   // Discord は1メッセージあたり embed 10件まで
   const chunks = embeds.length ? [] : [[]];
   for (let i = 0; i < embeds.length; i += 10) chunks.push(embeds.slice(i, i + 10));
@@ -38,4 +44,26 @@ export async function notify(embeds, content) {
     });
     if (!res.ok) throw new Error(`Discord ${res.status}: ${await res.text()}`);
   }
+}
+
+// LINE はテキストで送る。Markdown のリンク [文字](URL) は「文字 URL」に、**太字** は外す
+export function toLineText(embeds, content) {
+  const plain = (s = '') => s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1 $2').replace(/\*\*/g, '');
+  const blocks = embeds.map((e) => [e.title, plain(e.description), e.url && !e.description?.includes(e.url) ? e.url : '']
+    .filter(Boolean).join('\n'));
+  if (content) blocks.unshift(content);
+  return blocks.join('\n\n');
+}
+
+async function sendLine(token, embeds, content) {
+  // 無料枠（月200通）を節約するため、1回の実行で出る通知は1通にまとめる。上限5000文字
+  let text = toLineText(embeds, content);
+  if (text.length > 4900) text = `${text.slice(0, 4900)}\n…（続きはサイトで）`;
+  // 友だちは自分だけなので broadcast で送る（ユーザーIDの取得が不要）
+  const res = await fetch('https://api.line.me/v2/bot/message/broadcast', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ messages: [{ type: 'text', text }] }),
+  });
+  if (!res.ok) throw new Error(`LINE ${res.status}: ${await res.text()}`);
 }
