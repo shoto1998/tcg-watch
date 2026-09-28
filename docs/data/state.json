@@ -4,70 +4,32 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
-   "lastCount": 9
-  },
-  "yugioh-official": {
-   "failures": 0,
-   "alerted": false,
-   "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastOk": "2026-09-28T01:51:04.782Z",
    "lastCount": 6
   },
   "geo": {
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastOk": "2026-09-28T01:51:04.782Z",
    "lastCount": 3
   },
   "hmv": {
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
+   "lastOk": "2026-09-28T01:51:04.782Z",
    "lastCount": 0
   },
-  "yamada": {
+  "pokemon-official": {
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
-   "lastCount": 0
-  },
-  "rakuten-books": {
-   "failures": 0,
-   "alerted": false,
-   "seeded": true,
-   "lastOk": "2026-09-28T01:44:52.768Z",
-   "lastCount": 0
-  },
-  "aeon": {
-   "failures": 1,
-   "alerted": false,
-   "seeded": false,
-   "lastError": "HTTP 403: https://aeonretail.com/list/k-chusenhanbai/"
-  },
-  "amiami": {
-   "failures": 1,
-   "alerted": false,
-   "seeded": false,
-   "lastError": "HTTP 403: https://www.amiami.jp/top/page/t/attention.html"
-  },
-  "hareruya2": {
-   "failures": 1,
-   "alerted": false,
-   "seeded": false,
-   "lastError": "robots.txt で禁止: https://www.hareruya2.com/blogs/news"
-  },
-  "seven-net": {
-   "failures": 1,
-   "alerted": false,
-   "seeded": false,
-   "lastError": "HTTP 404: https://7net.omni7.jp/general/010007/230324pokemoncard"
+   "lastOk": "2026-09-28T01:51:04.782Z",
+   "lastCount": 11
   }
  },
- "updatedAt": "2026-09-28T01:44:52.768Z",
+ "updatedAt": "2026-09-28T01:51:04.782Z",
  "manualLinks": [
   {
    "name": "ポケモンセンターオンライン お知らせ",
@@ -96,6 +58,30 @@
   {
    "name": "トイザらス 予約商品",
    "url": "https://www.toysrus.co.jp/ja-jp/whats-on/new-arrivals/preorder-2/"
+  },
+  {
+   "name": "イオン 抽選販売",
+   "url": "https://aeonretail.com/list/k-chusenhanbai/"
+  },
+  {
+   "name": "あみあみ お知らせ",
+   "url": "https://www.amiami.jp/top/page/t/attention.html"
+  },
+  {
+   "name": "晴れる屋2 ニュース",
+   "url": "https://www.hareruya2.com/blogs/news"
+  },
+  {
+   "name": "ヤマダデンキ お知らせ",
+   "url": "https://www.yamada-denki.jp/information/"
+  },
+  {
+   "name": "楽天ブックス トレカ抽選",
+   "url": "https://books.rakuten.co.jp/event/game/card/entry/"
+  },
+  {
+   "name": "遊戯王OCG 商品情報",
+   "url": "https://www.yugioh-card.com/japan/products/"
   }
  ]
 }
