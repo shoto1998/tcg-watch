@@ -55,3 +55,12 @@ test('isAllowedByRobots', () => {
   assert.equal(isAllowedByRobots(robots, '/cart/news/1'), true);
   assert.equal(isAllowedByRobots('', '/any'), true);
 });
+
+test('decodeHtml は meta charset の Shift_JIS / EUC-JP を読める', async () => {
+  const { decodeHtml } = await import('../src/fetch.js');
+  const sjis = Uint8Array.from([...Buffer.from('<meta charset="Shift_JIS">'), 0x83, 0x7c, 0x83, 0x50, 0x83, 0x4a]);
+  assert.match(decodeHtml(sjis, 'text/html'), /ポケカ/);
+  const euc = Uint8Array.from([0xa5, 0xdd, 0xa5, 0xb1, 0xa5, 0xab]);
+  assert.equal(decodeHtml(euc, 'text/html; charset=EUC-JP'), 'ポケカ');
+  assert.equal(decodeHtml(Buffer.from('ポケカ'), null), 'ポケカ');
+});
