@@ -6,6 +6,11 @@ on:
     - cron: '50 22 * * *'
     - cron: '50 10 * * *'
   workflow_dispatch:
+    inputs:
+      test_notify:
+        description: 'Discord にテスト通知だけ送る'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -26,10 +31,18 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run collect
+      - if: inputs.test_notify
+        run: |
+          test -n "$DISCORD_WEBHOOK_URL" || { echo '::error::Secret DISCORD_WEBHOOK_URL が未設定です'; exit 1; }
+          node -e "import('./src/discord.js').then((d) => d.notify([], '✅ tcg-watch のテスト通知です。この通知が届けば設定は完了です。'))"
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      - if: ${{ !inputs.test_notify }}
+        run: npm run collect
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
       - name: Commit data
+        if: ${{ !inputs.test_notify }}
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
