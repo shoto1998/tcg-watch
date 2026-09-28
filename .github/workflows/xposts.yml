@@ -2,9 +2,9 @@ name: xposts
 
 # X の抽選告知投稿を Xpoz で1日1回取得して data/x/posts.json に保存する。
 # ここで保存した投稿を、Claude Code のルーティンが読んで GitHub Issues のタスクにする。
+# 2026-09-28: 抽選の管理はトレゲト（cardchusen.com）に一本化したため定期実行を止めた。
+# Xpoz の無料枠を温存するため、再開するときだけ schedule を戻す。
 on:
-  schedule:
-    - cron: '20 22 * * *' # JST 7:20
   workflow_dispatch:
 
 permissions:

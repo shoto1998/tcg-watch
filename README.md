@@ -5,7 +5,11 @@
 
 ## 仕組み
 
-### 抽選タスク（メイン）
+### 抽選タスク（停止中）
+
+2026-09-28 から、抽選の収集と応募管理は [トレゲト](https://cardchusen.com/)（LINE 締切通知・応募管理あり）に一本化した。
+以下の仕組みは残してあるが、X 投稿の定期取得（`xposts.yml` の schedule）と Claude Code のルーティンは止めている。
+再開するときは schedule を戻し、ルーティンを作り直す。
 
 1. GitHub Actions（`xposts.yml`）が毎朝 JST 7:20 に Xpoz で X の抽選告知投稿を検索し、`data/x/posts.json` に保存
 2. Claude Code のルーティンが [ROUTINE.md](ROUTINE.md) に従って投稿を読み、対象の抽選を GitHub Issues（ラベル `tcg-task`）にする
