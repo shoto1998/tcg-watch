@@ -48,6 +48,13 @@ async function main() {
     console.log(`created #${todayIssue.number}`);
   }
 
+  // cron-job.org からの起動と GitHub の予備スケジュールで二重に動いても、通知は1日1回にする
+  const labels = (todayIssue.labels ?? []).map((l) => (typeof l === 'string' ? l : l.name));
+  if (labels.includes('habit:notified') && process.env.FORCE_NOTIFY !== 'true') {
+    console.log(`already notified #${todayIssue.number}`);
+    return;
+  }
+
   const habits = issues.map(parseHabit);
   const week = weekStats(habits, weekStart(today));
   const embeds = [{
@@ -94,6 +101,7 @@ async function main() {
       ],
     },
   });
+  await gh(`/issues/${todayIssue.number}/labels`, { method: 'POST', body: JSON.stringify({ labels: ['habit:notified'] }) });
   console.log(`today=${today} week=${week.done}/${week.settled}`);
 }
 

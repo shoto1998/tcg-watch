@@ -1,11 +1,20 @@
 name: habit
 
-# 毎朝 JST 7:52 に「トレゲトで抽選に応募」の習慣タスクを作って Discord に通知する。
+# 毎朝「トレゲトで抽選に応募」の習慣タスクを作って LINE / Discord に通知する。
 # 前日までに完了しなかった分は未達として閉じ、月曜は前週の完了率を振り返る。
+#
+# GitHub の schedule は数時間遅れることがあるため、主な起動は cron-job.org から
+# workflow_dispatch API を JST 7:50 に呼ぶ。下の schedule（JST 9:27）は予備で、
+# その日すでに通知済みなら何もしない。
 on:
   schedule:
-    - cron: '52 22 * * *'
+    - cron: '27 0 * * *'
   workflow_dispatch:
+    inputs:
+      force:
+        description: '通知済みでももう一度通知する'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -31,3 +40,4 @@ jobs:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ github.token }}
+          FORCE_NOTIFY: ${{ inputs.force && 'true' || 'false' }}
