@@ -13,7 +13,7 @@
 
 | 仕組み | タイミング | 内容 |
 |---|---|---|
-| 習慣タスク（`habit.yml`） | 毎朝 JST 7:50（cron-job.org から起動。予備で GitHub schedule 9:27） | 「📝 今日のトレゲトで抽選に応募」の Issue を作り LINE / Discord に通知。LINE には「トレゲトを開く」「完了した」ボタン。前日の未完了は未達として閉じる。月曜は前週の完了率 |
+| 習慣タスク（`habit.yml`） | 毎朝 JST 7:50（Claude Code のルーティン「tcg-watch 朝の起動」が起動。予備で GitHub schedule 9:27） | 「📝 今日のトレゲトで抽選に応募」の Issue を作り LINE / Discord に通知。LINE には「トレゲトを開く」「完了した」ボタン。前日の未完了は未達として閉じる。月曜は前週の完了率 |
 | 公式サイト巡回（`collect.yml`） | JST 7:50 / 19:50 | ポケカ公式（お知らせ）、ワンピ公式（商品）、ゲオ、HMV を巡回し、新BOX・抽選告知を通知（X 検索リンク付き） |
 | サイト | 常時 | https://shoto1998.github.io/tcg-watch/ 「今日」タブで完了ボタンと直近4週の完了率。`#settings` で GitHub トークン設定 |
 
@@ -38,10 +38,11 @@ LINE の「完了した」→ 普段のブラウザでサイトが開き、`?don
 
 ## 未完了・次にやるなら
 
-- [ ] **cron-job.org の設定**（未確認）: `habit.yml` と `collect.yml` の `/dispatches` に POST するジョブを2つ。
-      ヘッダ `Authorization: Bearer <Actions: Read and write のトークン>`、`Accept: application/vnd.github+json`、
-      `X-GitHub-Api-Version: 2022-11-28`、本文 `{"ref":"main"}`。TEST RUN で 204 なら成功。
-      未設定のあいだは GitHub schedule（数時間遅れることがある）だけで動く
+- [x] **朝の起動**: GitHub schedule が数時間遅れるため、Claude Code のルーティン「tcg-watch 朝の起動」
+      （毎朝 JST 7:50、専用セッション「tcg-watch 朝の起動（ルーティン専用）」）が habit.yml と collect.yml を
+      workflow_dispatch で起動する。専用セッションは削除・アーカイブしないこと。
+      代わりに cron-job.org を使う場合は `/dispatches` に POST（ヘッダ `Authorization: Bearer <Actions: Read and write のトークン>`、
+      `Accept: application/vnd.github+json`、`X-GitHub-Api-Version: 2022-11-28`、本文 `{"ref":"main"}`）
 - [ ] 応募済み抽選の結果発表日をカレンダー登録し、発表日に「結果を確認したか」を LINE で聞く機能（案のみ）。
       応募URLに電話番号・生年月日が含まれることがあるので、公開リポジトリ（Issue）には載せないこと
 - [ ] 近所のコンビニ巡回の習慣化（発売日に合わせてタスクを出す案。今回は見送り）
@@ -51,4 +52,4 @@ LINE の「完了した」→ 普段のブラウザでサイトが開き、`?don
 
 - 最初は公式サイト＋店舗サイトの巡回で作ったが、ポケセン・Amazon は規約で禁止、イオン・あみあみは 403、晴れる屋2 は robots.txt で禁止、ヤマダ・楽天・遊戯王公式は JS 描画で取得できず
 - X から Xpoz で拾う方式も作ったが、1日45件程度で網羅性が低く、トレゲトに大きく劣るため停止
-- GitHub Actions の schedule が 7時間以上遅れたため、起動を cron-job.org に移した
+- GitHub Actions の schedule が 7時間以上遅れたため、起動を Claude Code のルーティンに移した（cron-job.org は設定せず）
