@@ -292,5 +292,19 @@
   "xSearch": "https://x.com/search?q=%22%E3%81%9D%E3%81%AE%E4%BB%96%20%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%AE%E5%95%86%E5%93%81%E3%81%AE%E6%8A%BD%E9%81%B8%E5%8F%97%E3%81%91%E4%BB%98%E3%81%91%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%20(%E5%A4%96%E9%83%A8%E3%83%AA%E3%83%B3%E3%82%AF)%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
   "xStores": "https://x.com/search?q=%22%E3%81%9D%E3%81%AE%E4%BB%96%20%E3%83%9D%E3%82%B1%E3%83%A2%E3%83%B3%E3%82%BB%E3%83%B3%E3%82%BF%E3%83%BC%E3%82%AA%E3%83%B3%E3%83%A9%E3%82%A4%E3%83%B3%E3%81%A7%E3%81%AE%E5%95%86%E5%93%81%E3%81%AE%E6%8A%BD%E9%81%B8%E5%8F%97%E3%81%91%E4%BB%98%E3%81%91%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%20(%E5%A4%96%E9%83%A8%E3%83%AA%E3%83%B3%E3%82%AF)%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
   "reminded": false
+ },
+ {
+  "id": "1dc5968860bb",
+  "sourceId": "onepiece-official",
+  "sourceName": "ワンピ公式",
+  "kind": "product",
+  "game": "onepiece",
+  "title": "ブースター エクストラブースター ONE PIECE Heroines Edition vol.2【EB-05】 発売日2026.10.31(土) メーカー希望小売価格240円(税込)",
+  "url": "https://www.onepiece-cardgame.com/products/eb05.html",
+  "firstSeen": "2026-10-02T16:23:03.656Z",
+  "deadline": null,
+  "xSearch": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20ONE%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
+  "xStores": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20ONE%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
+  "reminded": false
  }
 ]
