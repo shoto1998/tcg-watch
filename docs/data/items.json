@@ -306,5 +306,19 @@
   "xSearch": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20ONE%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
   "xStores": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20ONE%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
   "reminded": false
+ },
+ {
+  "id": "ebcd352e31eb",
+  "sourceId": "onepiece-official",
+  "sourceName": "ワンピ公式",
+  "kind": "product",
+  "game": "onepiece",
+  "title": "その他 公認店限定 ONE PIECEカードゲーム ONE PIECE HEROINES PRECIOUS BOX 発売日2026.10.31(土) メーカー希望小売価格8,470円(税込)",
+  "url": "https://www.onepiece-cardgame.com/products/heroines-box.html",
+  "firstSeen": "2026-10-05T22:51:45.056Z",
+  "deadline": null,
+  "xSearch": "https://x.com/search?q=%22%E3%81%9D%E3%81%AE%E4%BB%96%20%E5%85%AC%E8%AA%8D%E5%BA%97%E9%99%90%E5%AE%9A%20ONE%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
+  "xStores": "https://x.com/search?q=%22%E3%81%9D%E3%81%AE%E4%BB%96%20%E5%85%AC%E8%AA%8D%E5%BA%97%E9%99%90%E5%AE%9A%20ONE%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
+  "reminded": false
  }
 ]
