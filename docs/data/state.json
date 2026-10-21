@@ -4,32 +4,32 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-20T22:51:26.311Z",
+   "lastOk": "2026-10-21T01:02:02.643Z",
    "lastCount": 8
   },
   "geo": {
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-20T22:51:26.311Z",
+   "lastOk": "2026-10-21T01:02:02.643Z",
    "lastCount": 0
   },
   "hmv": {
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-20T22:51:26.311Z",
+   "lastOk": "2026-10-21T01:02:02.643Z",
    "lastCount": 0
   },
   "pokemon-official": {
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-20T22:51:26.311Z",
+   "lastOk": "2026-10-21T01:02:02.643Z",
    "lastCount": 13
   }
  },
- "updatedAt": "2026-10-20T22:51:26.311Z",
+ "updatedAt": "2026-10-21T01:02:02.643Z",
  "manualLinks": [
   {
    "name": "ポケモンセンターオンライン お知らせ",
