@@ -4,11 +4,11 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-21T15:39:51.317Z",
+   "lastOk": "2026-10-21T22:51:27.264Z",
    "lastCount": 8
   },
   "geo": {
-   "failures": 1,
+   "failures": 2,
    "alerted": false,
    "seeded": true,
    "lastOk": "2026-10-21T01:02:02.643Z",
@@ -16,10 +16,10 @@
    "lastError": "HTTP 403: https://geo-online.co.jp/news/"
   },
   "hmv": {
-   "failures": 1,
+   "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-21T01:02:02.643Z",
+   "lastOk": "2026-10-21T22:51:27.264Z",
    "lastCount": 0,
    "lastError": "HTTP 503: https://www.hmv.co.jp/news/"
   },
@@ -27,11 +27,11 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-21T15:39:51.317Z",
+   "lastOk": "2026-10-21T22:51:27.264Z",
    "lastCount": 13
   }
  },
- "updatedAt": "2026-10-21T15:39:51.317Z",
+ "updatedAt": "2026-10-21T22:51:27.264Z",
  "manualLinks": [
   {
    "name": "ポケモンセンターオンライン お知らせ",
