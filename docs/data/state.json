@@ -4,11 +4,11 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-22T15:41:35.024Z",
+   "lastOk": "2026-10-22T22:51:19.796Z",
    "lastCount": 8
   },
   "geo": {
-   "failures": 4,
+   "failures": 5,
    "alerted": true,
    "seeded": true,
    "lastOk": "2026-10-21T01:02:02.643Z",
@@ -19,7 +19,7 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-22T15:41:35.024Z",
+   "lastOk": "2026-10-22T22:51:19.796Z",
    "lastCount": 0,
    "lastError": "HTTP 503: https://www.hmv.co.jp/news/"
   },
@@ -27,11 +27,11 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-10-22T15:41:35.024Z",
+   "lastOk": "2026-10-22T22:51:19.796Z",
    "lastCount": 13
   }
  },
- "updatedAt": "2026-10-22T15:41:35.024Z",
+ "updatedAt": "2026-10-22T22:51:19.796Z",
  "manualLinks": [
   {
    "name": "ポケモンセンターオンライン お知らせ",
@@ -86,5 +86,12 @@
    "url": "https://www.yugioh-card.com/japan/products/"
   }
  ],
- "taskNotices": {}
+ "taskNotices": {
+  "1": [
+   "new"
+  ],
+  "2": [
+   "new"
+  ]
+ }
 }
