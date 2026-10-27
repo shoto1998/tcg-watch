@@ -13,7 +13,7 @@
 
 | 仕組み | タイミング | 内容 |
 |---|---|---|
-| 習慣タスク（`habit.yml`） | 毎朝 JST 7:50（Claude Code のルーティン「tcg-watch 朝の起動」が起動。予備で GitHub schedule 9:27） | 「📝 今日のトレゲトで抽選に応募」の Issue を作り LINE / Discord に通知。LINE には「トレゲトを開く」「完了した」ボタン。前日の未完了は未達として閉じる。月曜は前週の完了率 |
+| 習慣タスク（`habit.yml`） | 月・水・金の JST 20:57（Claude Code のルーティン「tcg-watch 朝の起動」が起動。予備で GitHub schedule 22:30） | 「📝 今日のトレゲトで抽選に応募」の Issue を作り LINE / Discord に通知。LINE には「トレゲトを開く」「完了した」ボタン。前回の未完了は次の回に未達として閉じる（毎日だと負担が大きかったため 2026-10-27 に月・水・金へ変更）。月曜は前週の完了率 |
 | 公式サイト巡回（`collect.yml`） | JST 7:50 / 19:50 | ポケカ公式（お知らせ）、ワンピ公式（商品）、ゲオ、HMV を巡回し、新BOX・抽選告知を通知（X 検索リンク付き） |
 | サイト | 常時 | https://shoto1998.github.io/tcg-watch/ 「今日」タブで完了ボタンと直近4週の完了率。`#settings` で GitHub トークン設定 |
 
@@ -39,7 +39,7 @@ LINE の「完了した」→ 普段のブラウザでサイトが開き、`?don
 ## 未完了・次にやるなら
 
 - [x] **朝の起動**: GitHub schedule が数時間遅れるため、Claude Code のルーティン「tcg-watch 朝の起動」
-      （毎朝 JST 7:50、専用セッション「tcg-watch 朝の起動（ルーティン専用）」）が habit.yml と collect.yml を
+      （月・水・金 JST 20:57、専用セッション「tcg-watch 朝の起動（ルーティン専用）」）が habit.yml と collect.yml を
       workflow_dispatch で起動する。専用セッションは削除・アーカイブしないこと。
       代わりに cron-job.org を使う場合は `/dispatches` に POST（ヘッダ `Authorization: Bearer <Actions: Read and write のトークン>`、
       `Accept: application/vnd.github+json`、`X-GitHub-Api-Version: 2022-11-28`、本文 `{"ref":"main"}`）

@@ -1,8 +1,12 @@
-// 毎日の習慣タスク（トレゲトで応募）= GitHub Issue（ラベル habit）。
-// Issue を「完了」で閉じたら達成、翌朝までに閉じなければ未達（habit:missed）として自動で閉じる。
+// 習慣タスク（トレゲトで応募、月・水・金）= GitHub Issue（ラベル habit）。
+// Issue を「完了」で閉じたら達成、次のタスクが出るまでに閉じなければ未達（habit:missed）として自動で閉じる。
 // サイト（ブラウザ）と Actions（Node）の両方から読み込む。
 
 export const HABIT_LABEL = 'habit';
+// タスクを出す曜日（JST、0=日）。次のタスクが出るまでは前のタスクを完了にできる
+export const HABIT_DAYS = [1, 3, 5];
+export const HABIT_DAYS_LABEL = '月・水・金';
+export const isHabitDay = (date) => HABIT_DAYS.includes(new Date(`${date}T00:00:00Z`).getUTCDay());
 export const HABIT = {
   title: 'トレゲトで抽選に応募',
   url: 'https://cardchusen.com/',
@@ -36,7 +40,7 @@ export function parseHabit(issue) {
 export function habitBody(date) {
   return `<!-- habit\n${JSON.stringify({ date })}\n-->\n` +
     `- [ ] [トレゲト](${HABIT.url})で今日締切・新着の抽選を確認して応募する\n\n` +
-    `終わったら **Close issue（完了）** で閉じるか、サイトの「完了した」を押す。翌朝までに閉じないと未達になる。\n`;
+    `終わったら **Close issue（完了）** で閉じるか、サイトの「完了した」を押す。次のタスク（${HABIT_DAYS_LABEL}）が出るまでに閉じないと未達になる。\n`;
 }
 
 export function dayLabel(date) {
@@ -53,14 +57,13 @@ export function weekStats(habits, start) {
   return { start, done, settled, rate: settled ? done / settled : null, days };
 }
 
-// 今日から遡った連続達成日数（今日が未完了なら昨日から数える）
-export function streak(habits, today) {
-  const byDate = new Map(habits.map((h) => [h.date, h.result]));
-  let d = byDate.get(today) === 'done' ? today : addDays(today, -1);
+// 直近から遡った連続達成回数（まだ受付中のタスクは飛ばす）
+export function streak(habits) {
   let n = 0;
-  while (byDate.get(d) === 'done') {
+  for (const h of [...habits].sort((a, b) => b.date.localeCompare(a.date))) {
+    if (h.result === 'pending') continue;
+    if (h.result !== 'done') break;
     n += 1;
-    d = addDays(d, -1);
   }
   return n;
 }

@@ -1,8 +1,8 @@
-// 毎朝: 前日までの未完了を未達で閉じ、今日の習慣タスクを作って Discord に通知する。
+// 月・水・金の夜: 前回の未完了を未達で閉じ、今回の習慣タスクを作って LINE / Discord に通知する。
 // 月曜は前週の振り返り（完了率）も送る。
 import { notify } from './discord.js';
 import {
-  HABIT, HABIT_LABEL, addDays, dayLabel, habitBody, jstDate, parseHabit, streak, weekStart, weekStats,
+  HABIT, HABIT_DAYS_LABEL, HABIT_LABEL, addDays, dayLabel, habitBody, isHabitDay, jstDate, parseHabit, streak, weekStart, weekStats,
 } from '../docs/habit-core.js';
 
 const SITE = 'https://shoto1998.github.io/tcg-watch/';
@@ -24,10 +24,15 @@ const pct = (r) => (r === null ? '-' : `${Math.round(r * 100)}%`);
 
 async function main() {
   const today = jstDate(Date.now());
+  // タスクを出す曜日以外は何もしない（前回のタスクは次の回まで受け付ける）
+  if (!isHabitDay(today)) {
+    console.log(`${today} はタスクを出す曜日ではありません`);
+    return;
+  }
   let issues = await gh(`/issues?labels=${HABIT_LABEL}&state=all&per_page=100`);
   issues = issues.filter((i) => !i.pull_request);
 
-  // 前日までの未完了は未達として閉じる
+  // 前回までの未完了は未達として閉じる
   for (const i of issues) {
     const h = parseHabit(i);
     if (h.result === 'pending' && h.date < today) {
@@ -64,7 +69,7 @@ async function main() {
       `[トレゲトを開く](${HABIT.url}) → 今日締切・新着の抽選に応募`,
       `終わったら [完了を記録](${SITE}?done=${todayIssue.number}) （または [Issue](${todayIssue.html_url}) を閉じる）`,
       '',
-      `連続達成: **${streak(habits, today)}日** ・ 今週: ${week.done}/${week.settled}（${pct(week.rate)}）`,
+      `連続達成: **${streak(habits)}回** ・ 今週: ${week.done}/${week.settled}（${pct(week.rate)}）`,
     ].join('\n'),
     color: 0x2563eb,
   }];
@@ -94,7 +99,7 @@ async function main() {
   await notify(embeds, undefined, {
     lineButtons: {
       title: `📝 ${dayLabel(today)} ${HABIT.title}`,
-      text: '応募が終わったら「完了した」を押す',
+      text: `応募が終わったら「完了した」（次は${HABIT_DAYS_LABEL}）`,
       actions: [
         { label: 'トレゲトを開く', uri: `${HABIT.url}?openExternalBrowser=1` },
         { label: '完了した', uri: doneUrl },

@@ -1,14 +1,14 @@
 name: habit
 
-# 毎朝「トレゲトで抽選に応募」の習慣タスクを作って LINE / Discord に通知する。
-# 前日までに完了しなかった分は未達として閉じ、月曜は前週の完了率を振り返る。
+# 月・水・金の夜に「トレゲトで抽選に応募」の習慣タスクを作って LINE / Discord に通知する。
+# 前回までに完了しなかった分は未達として閉じ、月曜は前週の完了率を振り返る。
 #
-# GitHub の schedule は数時間遅れることがあるため、主な起動は cron-job.org から
-# workflow_dispatch API を JST 7:50 に呼ぶ。下の schedule（JST 9:27）は予備で、
-# その日すでに通知済みなら何もしない。
+# GitHub の schedule は数時間遅れることがあるため、主な起動は Claude Code のルーティン
+# 「tcg-watch 朝の起動」が JST 20:57（月・水・金）に workflow_dispatch で行う。
+# 下の schedule（JST 22:30）は予備で、その回をすでに通知済みなら何もしない。
 on:
   schedule:
-    - cron: '27 0 * * *'
+    - cron: '30 13 * * 1,3,5'
   workflow_dispatch:
     inputs:
       force:

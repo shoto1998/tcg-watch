@@ -1,5 +1,5 @@
 import { STATUSES, STEPS, TASK_LABEL, formatBody, formatJst as fmt, parseTask } from './task-core.js';
-import { HABIT, HABIT_LABEL, addDays, dayLabel, jstDate, parseHabit, streak, weekStart, weekStats } from './habit-core.js';
+import { HABIT, HABIT_DAYS_LABEL, HABIT_LABEL, addDays, dayLabel, jstDate, parseHabit, streak, weekStart, weekStats } from './habit-core.js';
 
 const REPO = 'shoto1998/tcg-watch';
 const API = `https://api.github.com/repos/${REPO}`;
@@ -73,7 +73,9 @@ async function renderHabit() {
   const issues = (await gh(`/issues?labels=${HABIT_LABEL}&state=all&per_page=100`)).filter((i) => !i.pull_request);
   const habits = issues.map(parseHabit);
   const today = jstDate(Date.now());
-  const t = habits.find((h) => h.date === today);
+  // 受付中のタスク（なければ直近のもの）を表示する
+  const latest = [...habits].sort((a, b) => b.date.localeCompare(a.date));
+  const t = latest.find((h) => h.result === 'pending') ?? latest[0];
   const thisWeek = weekStart(today);
   const weeks = [0, 1, 2, 3].map((k) => weekStats(habits, addDays(thisWeek, -7 * k)));
   const cell = (d) => {
@@ -81,16 +83,16 @@ async function renderHabit() {
     return `<span class="day ${r ?? 'none'}" title="${dayLabel(d)}"></span>`;
   };
   const todayCard = !t
-    ? '<p class="muted">今日のタスクは毎朝8時ごろに作られます</p>'
-    : t.result === 'done'
-      ? '<p class="done-msg">✅ 今日は完了しました</p>'
+    ? `<p class="muted">タスクは${HABIT_DAYS_LABEL}の21時ごろに作られます</p>`
+    : t.result !== 'pending'
+      ? `<p class="done-msg">${t.result === 'done' ? '✅ 前回の分は完了しました' : '前回の分は未達でした'}。次は${HABIT_DAYS_LABEL}の21時ごろ</p>`
       : `<div class="actions">
           ${link(HABIT.url, 'トレゲトを開く', 'primary')}
           ${token ? `<button data-habit-done="${t.number}">完了した</button>` : link(t.url, 'GitHubで閉じる')}
         </div>
         ${token ? '' : '<p class="hint">「設定」でGitHubトークンを登録すると、ここで完了を記録できます</p>'}`;
   $list.innerHTML = `<article class="item habit">
-      <div class="head"><span class="badge status-todo">${dayLabel(today)}</span><span class="due">連続 ${streak(habits, today)}日</span></div>
+      <div class="head"><span class="badge status-todo">${t ? dayLabel(t.date) : dayLabel(today)}</span><span class="due">連続 ${streak(habits)}回</span></div>
       <p class="title">${esc(HABIT.title)}</p>
       ${todayCard}
     </article>

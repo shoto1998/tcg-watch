@@ -34,14 +34,18 @@ test('weekStats は今日の未確定を分母に入れない', () => {
   assert.equal(weekStats([], '2026-09-28').rate, null);
 });
 
-test('streak は今日が未完了なら昨日から数える', () => {
+test('streak は受付中を飛ばしてタスクの回数で数える', () => {
   const habits = [
-    issue(1, '2026-09-26', 'closed', 'not_planned'),
-    issue(2, '2026-09-27', 'closed', 'completed'),
-    issue(3, '2026-09-28', 'closed', 'completed'),
-    issue(4, '2026-09-29', 'open', null),
+    issue(1, '2026-09-25', 'closed', 'not_planned'),
+    issue(2, '2026-09-28', 'closed', 'completed'),
+    issue(3, '2026-09-30', 'closed', 'completed'),
+    issue(4, '2026-10-02', 'open', null),
   ].map(parseHabit);
-  assert.equal(streak(habits, '2026-09-29'), 2);
-  assert.equal(streak(habits, '2026-09-28'), 2);
-  assert.equal(streak(habits, '2026-09-27'), 1);
+  assert.equal(streak(habits), 2);
+  assert.equal(streak(habits.slice(0, 1)), 0);
+});
+
+test('isHabitDay は月・水・金だけ', async () => {
+  const { isHabitDay } = await import('../docs/habit-core.js');
+  assert.deepEqual(['2026-10-26', '2026-10-27', '2026-10-28', '2026-10-30', '2026-10-31'].map(isHabitDay), [true, false, true, true, false]);
 });
