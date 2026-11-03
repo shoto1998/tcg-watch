@@ -4,11 +4,11 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-11-02T20:31:23.297Z",
+   "lastOk": "2026-11-03T03:44:08.079Z",
    "lastCount": 7
   },
   "geo": {
-   "failures": 34,
+   "failures": 35,
    "alerted": true,
    "seeded": true,
    "lastOk": "2026-10-21T01:02:02.643Z",
@@ -19,7 +19,7 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-11-02T20:31:23.297Z",
+   "lastOk": "2026-11-03T03:44:08.079Z",
    "lastCount": 0,
    "lastError": "HTTP 503: https://www.hmv.co.jp/news/"
   },
@@ -27,11 +27,11 @@
    "failures": 0,
    "alerted": false,
    "seeded": true,
-   "lastOk": "2026-11-02T20:31:23.297Z",
+   "lastOk": "2026-11-03T03:44:08.079Z",
    "lastCount": 14
   }
  },
- "updatedAt": "2026-11-02T20:31:23.297Z",
+ "updatedAt": "2026-11-03T03:44:08.079Z",
  "manualLinks": [
   {
    "name": "ポケモンセンターオンライン お知らせ",
