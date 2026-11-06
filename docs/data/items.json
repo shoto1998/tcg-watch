@@ -460,5 +460,47 @@
   "xSearch": "https://x.com/search?q=%22%E3%83%9E%E3%82%AD%E3%82%B7%E3%81%AE%E7%86%B1%E8%A1%80%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
   "xStores": "https://x.com/search?q=%22%E3%83%9E%E3%82%AD%E3%82%B7%E3%81%AE%E7%86%B1%E8%A1%80%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
   "reminded": false
+ },
+ {
+  "id": "47323a7e42a2",
+  "sourceId": "onepiece-official",
+  "sourceName": "ワンピ公式",
+  "kind": "product",
+  "game": "onepiece",
+  "title": "ブースター プレミアムエクストラブースター 夢の一枚【PEB-01】 発売日2027.04.24(土) メーカー希望小売価格440円(税込)",
+  "url": "https://www.onepiece-cardgame.com/products/per01.html",
+  "firstSeen": "2026-11-06T17:42:42.116Z",
+  "deadline": null,
+  "xSearch": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E5%A4%A2%E3%81%AE%E4%B8%80%E6%9E%9A%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
+  "xStores": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%83%97%E3%83%AC%E3%83%9F%E3%82%A2%E3%83%A0%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E5%A4%A2%E3%81%AE%E4%B8%80%E6%9E%9A%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
+  "reminded": false
+ },
+ {
+  "id": "54e8b3d7b7d0",
+  "sourceId": "onepiece-official",
+  "sourceName": "ワンピ公式",
+  "kind": "product",
+  "game": "onepiece",
+  "title": "ブースター ブースターパック 応答せよ、世界【OP-19】 発売日2027.02.27(土) メーカー希望小売価格240円(税込)",
+  "url": "https://www.onepiece-cardgame.com/products/op19.html",
+  "firstSeen": "2026-11-06T17:42:42.116Z",
+  "deadline": null,
+  "xSearch": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%20%E5%BF%9C%E7%AD%94%E3%81%9B%E3%82%88%E3%80%81%E4%B8%96%E7%95%8C%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
+  "xStores": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%E3%83%91%E3%83%83%E3%82%AF%20%E5%BF%9C%E7%AD%94%E3%81%9B%E3%82%88%E3%80%81%E4%B8%96%E7%95%8C%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
+  "reminded": false
+ },
+ {
+  "id": "e923dc5306c9",
+  "sourceId": "onepiece-official",
+  "sourceName": "ワンピ公式",
+  "kind": "product",
+  "game": "onepiece",
+  "title": "ブースター エクストラブースター EAST BLUE【EB-06】 発売日2027.01.30(土) メーカー希望小売価格240円(税込)",
+  "url": "https://www.onepiece-cardgame.com/products/eb06.html",
+  "firstSeen": "2026-11-06T17:42:42.116Z",
+  "deadline": null,
+  "xSearch": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20EAST%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
+  "xStores": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20EAST%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
+  "reminded": false
  }
 ]
