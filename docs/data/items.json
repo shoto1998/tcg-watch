@@ -502,5 +502,19 @@
   "xSearch": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20EAST%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
   "xStores": "https://x.com/search?q=%22%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%88%E3%83%A9%E3%83%96%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC%20EAST%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
   "reminded": false
+ },
+ {
+  "id": "dbdf2e177cf8",
+  "sourceId": "pokemon-official",
+  "sourceName": "ポケカ公式",
+  "kind": "product",
+  "game": "pokemon",
+  "title": "商品 拡張パック「ハドウシーカー」の、収録カードをさらに大公開！ 2026.11.13",
+  "url": "https://www.pokemon-card.com/ex/m7/",
+  "firstSeen": "2026-11-13T11:58:13.004Z",
+  "deadline": null,
+  "xSearch": "https://x.com/search?q=%22%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20-filter%3Areplies&f=live",
+  "xStores": "https://x.com/search?q=%22%E3%83%8F%E3%83%89%E3%82%A6%E3%82%B7%E3%83%BC%E3%82%AB%E3%83%BC%22%20(%E6%8A%BD%E9%81%B8%20OR%20%E4%BA%88%E7%B4%84%20OR%20%E5%BF%9C%E5%8B%9F)%20(from%3AGEO_official%20OR%20from%3Ahareruya2pokeca%20OR%20from%3AYodobashi_X%20OR%20from%3A7_netshopping%20OR%20from%3Acardrush_poke)&f=live",
+  "reminded": false
  }
 ]
